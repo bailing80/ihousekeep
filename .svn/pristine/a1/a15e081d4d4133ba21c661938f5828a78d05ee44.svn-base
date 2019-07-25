@@ -1,0 +1,26 @@
+package com.ccunix.ihousekeeping.serviceitem.domain;
+
+import com.ccunix.ihousekeeping.basedb.domain.T_u_service_item;
+
+public class ServiceItem_lowerlevelbean extends T_u_service_item {
+	
+	String rownumber;
+	String keyword;
+
+	 
+	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getRownumber() {
+		return rownumber;
+	}
+	public void setRownumber(String rownumber) {
+		this.rownumber = rownumber;
+	}
+	
+
+}

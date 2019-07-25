@@ -1,0 +1,14 @@
+package com.ccunix.ihousekeeping.coupon_manager.dao;
+
+import java.util.List;
+
+import com.ccunix.ihousekeeping.coupon_manager.domain.Coupon_manager;
+
+public interface Coupon_manager_Dao_Iface {
+	public List query_all_coupon_manager(Coupon_manager coupon_manager);
+	
+	public int getCouponBatchcode_int() throws Exception;
+	
+	public int getCouponExchangeCode_int() throws Exception;
+
+}

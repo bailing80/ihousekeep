@@ -1,0 +1,22 @@
+$(document).ready(function() {
+	queryAllItem();
+	//alert("[setitem_ridermanager页面][初始化]");
+});
+
+function queryAllItem(){
+	
+	$.ajax({
+		url : getRootPath()+ "/Riderelegant_Manager_Controller_4W/queryAll_t_u_service_item.action",
+		data : null,
+		success : show_AllSetItem
+	});
+}
+
+function show_AllSetItem(data){
+	//alert("[show_AllSetItem][调用]");
+	var d =$(data);
+	//alert("[d.length]"+d.length);
+	for(var i = 0;i<d.length;i++){
+		$("#item").append("<li><input type="+"'checkbox' value='"+d[i].id+"'/>"+d[i].item_name+"</li>");
+	}
+}

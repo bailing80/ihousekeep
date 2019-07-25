@@ -1,0 +1,32 @@
+package com.ccunix.ihousekeeping.coupon_manager.domain;
+
+import com.ccunix.ihousekeeping.basedb.domain.T_u_coupon_manager;
+
+/**
+ * 
+ * @ClassName: Coupon_manager
+ * @author 肖云鹏
+ * @date 2019年7月23日 下午6:21:33
+ *
+ */
+public class Coupon_manager extends T_u_coupon_manager {
+	String num;// 序号
+	String keyword;// 关键字
+
+	public String getNum() {
+		return num;
+	}
+
+	public void setNum(String num) {
+		this.num = num;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+}

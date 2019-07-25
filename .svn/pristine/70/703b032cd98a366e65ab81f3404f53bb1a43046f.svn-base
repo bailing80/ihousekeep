@@ -1,0 +1,25 @@
+$(document).ready(function() {
+	query();
+});
+
+function query() {
+
+	$
+			.ajax({
+				url : getRootPath()
+						+ "/Coupon_manager_Controller_4W/query_coupon_type.action",
+				data : null,
+				success : show_add_coupon_type
+			});
+}
+
+function show_add_coupon_type(data) {
+
+	for (var i = 0; i < $(data).length; i++) {
+		$("#coupon_type_id").append(
+				"<option value='" + $(data)[i].id + "'>" + $(data)[i].type_name
+						+ "</option>");
+
+	}
+
+}

@@ -1,0 +1,106 @@
+package com.ccunix.ihousekeeping.coupon_manager.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ccunix.ihousekeeping.base.controller.BaseMultiController;
+import com.ccunix.ihousekeeping.base.domain.PageModel;
+import com.ccunix.ihousekeeping.base.service.PageServiceIface;
+import com.ccunix.ihousekeeping.base.util.UUID_Tools;
+import com.ccunix.ihousekeeping.basedb.domain.T_u_coupon;
+import com.ccunix.ihousekeeping.basedb.domain.T_u_coupon_manager;
+import com.ccunix.ihousekeeping.basedb.domain.T_u_coupon_type;
+import com.ccunix.ihousekeeping.basedb.service.T_u_coupon_Service_Iface;
+import com.ccunix.ihousekeeping.basedb.service.T_u_coupon_manager_Service_Iface;
+import com.ccunix.ihousekeeping.basedb.service.T_u_coupon_type_Service_Iface;
+import com.ccunix.ihousekeeping.coupon_manager.domain.Coupon_manager;
+import com.ccunix.ihousekeeping.coupon_manager.service.Coupon_manager_Service_Iface;
+
+@Controller
+@RequestMapping("Coupon_manager_Controller_4W")
+public class Coupon_manager_Controller_4W extends BaseMultiController {
+	@Resource
+	Coupon_manager_Service_Iface coupon_manager_Service_Iface;
+	@Resource
+	T_u_coupon_manager_Service_Iface t_u_coupon_manager_Service_Iface;
+
+	@Resource
+	T_u_coupon_Service_Iface t_u_coupon_Service_Iface;
+
+	@Resource
+	T_u_coupon_type_Service_Iface t_u_coupon_type_Service_Iface;
+	@Resource
+	PageServiceIface pageServiceIface;
+
+	// 查询全部
+	@RequestMapping("query_all_coupon_manager")
+	@ResponseBody
+	public List query_all_coupon_manager(Coupon_manager coupon_manager) {
+		List ls = null;
+		try {
+			ls = coupon_manager_Service_Iface.query_all_coupon_manager(coupon_manager);
+			PageModel model = pageServiceIface.setPageData(request, ls);
+			return pageServiceIface.getNowPageData(request, model);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return ls;
+	}
+
+	// 新增
+	@RequestMapping("add_coupon_manager")
+	@ResponseBody
+	public void add_coupon_manager(T_u_coupon_manager t_u_coupon_manager) {
+		T_u_coupon t_u_coupon = new T_u_coupon();
+		T_u_coupon_type t_u_coupon_type = new T_u_coupon_type();
+		try {
+			// 插入主表优惠券管理类型的id
+			t_u_coupon_manager.setId(UUID_Tools.getUUID());
+			// 插入语主表优惠券管理表的coupon_type_id
+			t_u_coupon_manager.setCoupon_type_id(t_u_coupon_type.getId());
+			// 插入主表优惠券管理表的生成人
+
+			// 插入主表优惠券管理表的批次号
+
+			// 写死主表优惠券管理表的生成人
+			t_u_coupon_manager.setCreator_name("ABC");
+			// 插入
+			t_u_coupon_manager_Service_Iface.insert_t_u_coupon_manager(t_u_coupon_manager);
+			// 插入从表优惠券的id
+			t_u_coupon.setId(UUID_Tools.getUUID());
+			// 插入从表优惠券表的外键coupon_manager_id
+			t_u_coupon.setCoupon_manager_id(t_u_coupon_manager.getId());
+			// 插入从表优惠券表的外键coupon_type_id
+			t_u_coupon.setCoupon_type_id(t_u_coupon_type.getId());
+			// 插入优惠券表
+			t_u_coupon_Service_Iface.insert_t_u_coupon(t_u_coupon);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	// 查询优惠券类型的类型名称
+	@RequestMapping("query_coupon_type")
+	@ResponseBody
+	public List query_coupon_type(T_u_coupon_type t_u_coupon_type) {
+		List ls = null;
+		try {
+			ls = t_u_coupon_type_Service_Iface.queryAll_t_u_coupon_type(t_u_coupon_type);
+			PageModel model = pageServiceIface.setPageData(request, ls);
+			return pageServiceIface.getNowPageData(request, model);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return ls;
+
+	}
+
+}

@@ -1,0 +1,54 @@
+$(document).ready(function() {
+	DetailManager(detail_id);
+});
+
+
+
+function DetailManager(id) {
+	var obj = new Object();
+	obj.id = id;
+	$.ajax({
+				url : getRootPath()+ "/Riderelegant_Manager_Controller_4W/queryAllManager_Rider.action",
+				data : obj,
+				success : show_detail_manager_1
+			});
+	obj.id = id;
+	$.ajax({
+		url : getRootPath()+ "/Riderelegant_Manager_Controller_4W/queryAllItem_Name.action",
+		data : obj,
+		success : show_detail_manager_2
+	});
+}
+
+function show_detail_manager_1(data){
+	var d =$(data)[0];
+	$("#phone").val(d.phone);
+	$("#name").val(d.name);
+	$("#level_name").val(d.level_name);
+	$("#leader_name").val(d.leader_name);
+	$("#is_login").val(d.is_login);
+	$("#location").val(d.latitude+d.longitude);
+	$("#order_statue").val(d.order_statue);
+	$("#rider_code").val(d.rider_code);
+	$("#is_excellent").val(d.is_excellent);
+	$("#rider_sum").val(d.rider_sum);
+	$("#photo").attr('src',d.photo_url); 
+//	$("#is_show").val(d.is_show);
+	/*if(d.is_show=='01'){
+		$("#is_show").val("显示");
+	}else{
+		$("#is_show").val("隐藏");
+	}
+
+	$("#photo").val(d.photo_url);
+	photo=d.photo_url;
+	$("#photo").attr('src',httpFileBasePath+photo); 
+//	alert(photo);*/
+}
+function show_detail_manager_2(data){
+	var d =$(data);
+	for(var i = 0;i<d.length;i++){
+		$("#service_item").append("<lable>["+d[i].item_name+"]</lable>");
+	}
+
+}

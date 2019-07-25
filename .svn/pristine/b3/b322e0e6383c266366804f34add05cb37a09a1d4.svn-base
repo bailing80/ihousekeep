@@ -1,0 +1,27 @@
+$(document).ready(function() {
+	queryEditRole(update_id);
+});
+
+function queryEditRole(id) {
+	var obj = new Object();
+	obj.id = id;
+	$
+			.ajax({
+				url : getRootPath()
+						+ "/Role_Controller_4W/query_Role_manager_By_Id.action",
+				data : obj,
+				success : show_edit_role
+			});
+
+}
+
+function show_edit_role(data) {
+	var d = $(data)[0];
+	$("#name").val(d.name);
+	$("#description").val(d.description);
+	$("#this_level").val(d.this_level);
+	$("#parent_id").val(d.parent_id);
+	
+	
+	
+}

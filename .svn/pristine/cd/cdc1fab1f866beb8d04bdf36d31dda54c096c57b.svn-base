@@ -1,0 +1,23 @@
+package com.ccunix.ihousekeeping.coupon_manager.service;
+
+import java.util.List;
+
+import com.ccunix.ihousekeeping.coupon_manager.domain.Coupon_manager;
+
+/**
+ * 
+ * @ClassName: Coupon_manager_Service_Iface
+ * @author 肖云鹏
+ * @date 2019年7月23日 下午6:21:26
+ *
+ */
+public interface Coupon_manager_Service_Iface {
+	public List query_all_coupon_manager(Coupon_manager coupon_manager);
+	
+	//生成批次号
+	public String getCouponbatchCode() throws Exception;  
+	
+	//生成兑换码
+	public String exchange_code(String batch_code) throws Exception;
+
+}

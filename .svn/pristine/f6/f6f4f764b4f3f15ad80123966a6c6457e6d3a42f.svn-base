@@ -1,0 +1,16 @@
+package com.ccunix.ihousekeeping.riderelegant.dao;
+
+import java.util.List;
+
+import com.ccunix.ihousekeeping.basedb.domain.T_u_service_item;
+
+public interface Riderelegant_Manager_Dao_Iface {
+	public List queryAllExcellent_Rider() throws Exception;
+	public List queryAllUnexcellent_Rider() throws Exception;
+	public List queryAll_Rider() throws Exception;
+	public List queryAllManager_Rider() throws Exception;
+	public List queryAllItem_Name(T_u_service_item T_u_service_item) throws Exception;
+	public void delete_By_Rider(T_u_service_item t_u_service_item) throws Exception;
+	
+}
+//delete_By_Rider

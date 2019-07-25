@@ -1,0 +1,31 @@
+$(document).ready(function() {
+	querymember_information(member_id);
+
+});
+
+function querymember_information(id) {
+	var obj = new Object();
+	obj.id = id;
+	$
+			.ajax({
+				url : getRootPath()
+						+ "/Member_information_Controller_4W/query_all_member_information.action",
+				data : obj,
+				success : show_member_information_detail
+			});
+
+}
+
+function show_member_information_detail(data) {
+	var d = $(data)[0];
+	$("#nick_name").val(d.nick_name);
+	$("#user_phone").val(d.user_phone);
+	$("#address").val(d.address);
+	$("#apartment_name").val(d.apartment_name);
+	$("#area_name").val(d.area_name);
+	$("#true_area").val(d.true_area);
+	$("#door_number").val(d.door_number);
+	$("#member_state_str").val(d.member_state_str);
+	
+
+}
